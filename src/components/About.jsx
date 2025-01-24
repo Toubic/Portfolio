@@ -52,9 +52,9 @@ const About = () => {
         className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]"
       >
         I'm a full-stack developer with a passion for creating user-friendly and interactive web applications that creates real value.
-        I specialize in front-end and full-stack development using React and other related technologies.
+        I specialize in frontend and fullstack development using React and other related technologies.
         My work expertise covers a variety of technologies, programming languages and frameworks, including React, Node.js, JavaScript, CSS, HTML and more.
-        When it comes to databases, I have worked with databases such as MongoDB and PostgreSQL.
+        When it comes to databases, I have worked with databases such as MongoDB, PostgreSQL and others.
         Version control in Git and GitHub.
         Ticket handling in Jira.
         API development with Axios, Postman, Node.js and API documentation.
