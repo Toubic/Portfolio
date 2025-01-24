@@ -20,10 +20,9 @@ import tailwind from "./tech/tailwind.png";
 import typescript from "./tech/typescript.png";
 import threejs from "./tech/threejs.svg";
 
-import meta from "./company/meta.png";
-import shopify from "./company/shopify.png";
-import starbucks from "./company/starbucks.png";
-import tesla from "./company/tesla.png";
+import sportson from "./company/sportson.png";
+import pom from "./company/pom.png";
+import proclient from "./company/proclient.png";
 
 import carrent from "./carrent.png";
 import jobit from "./jobit.png";
@@ -50,10 +49,9 @@ export {
   tailwind,
   typescript,
   threejs,
-  meta,
-  shopify,
-  starbucks,
-  tesla,
+  sportson,
+  pom,
+  proclient,
   carrent,
   jobit,
   tripguide,
