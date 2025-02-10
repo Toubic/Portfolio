@@ -17,9 +17,14 @@ const Contact = () => {
   });
 
   const [loading, setLoading] = useState(false);
+  const [isSent, setIsSent] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    setIsSent(false);
+    setIsError(false);
 
     setForm({
       ...form,
@@ -46,7 +51,7 @@ const Contact = () => {
     .then(
       () => {
         setLoading(false);
-        alert("Thank you. I will get back to you as soon as possible.");
+        setIsSent(true);
 
         setForm({
           name: "",
@@ -57,8 +62,7 @@ const Contact = () => {
       (error) => {
         setLoading(false);
         console.error(error);
-
-        alert("Ahh, something went wrong. Please try again.");
+        setIsError(true);
       }
     );
   };
@@ -110,12 +114,16 @@ const Contact = () => {
             />
           </label>
 
-          <button
-            type="submit"
-            className="bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary"
-          >
-            {loading ? "Sending..." : "Send"}
-          </button>
+          <div className="flex flex-row mb-4">
+            <button
+              type="submit"
+              className="bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary"
+            >
+              {loading ? "Sending..." : "Send"}
+            </button>
+            {isSent && <span className="ml-4 mt-3 text-white font-medium">Sent!</span>}
+            {isError && <span className="ml-4 mt-3 text-white font-medium">Error! Try again later.</span>}
+          </div>
         </form>
       </motion.div>
 
