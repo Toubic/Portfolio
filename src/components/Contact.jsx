@@ -19,12 +19,16 @@ const Contact = () => {
   const [loading, setLoading] = useState(false);
   const [isSent, setIsSent] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [isCaptchaWrong, setIsCaptchaWrong] = useState(false);
+  const [captchaNumberOne, setCaptchaNumberOne] = useState(Math.floor(Math.random()*10));
+  const [captchaNumberTwo, setCaptchaNumberTwo] = useState(Math.floor(Math.random()*10));
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
     setIsSent(false);
     setIsError(false);
+    setIsCaptchaWrong(false);
 
     setForm({
       ...form,
@@ -35,7 +39,11 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
+    setIsCaptchaWrong(false);
+    setIsSent(false);
+    setIsError(false);
 
+    if ((captchaNumberOne + captchaNumberTwo) === Number(form.captcha)) {
     emailjs.send(
       import.meta.env.VITE_REACT_APP_EMAILJS_SERVICE_ID,
       import.meta.env.VITE_REACT_APP_EMAILJS_TEMPLATE_ID,
@@ -65,6 +73,10 @@ const Contact = () => {
         setIsError(true);
       }
     );
+  } else if ((captchaNumberOne + captchaNumberTwo) !== Number(form.captcha)) {
+    setLoading(false);
+    setIsCaptchaWrong(true);
+  }
   };
   return (
     <div className="xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden">
@@ -113,6 +125,17 @@ const Contact = () => {
               className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
             />
           </label>
+          <label className="flex flex-col">
+            <span className="text-white font-medium mb-4">Captcha</span>
+            <input
+              type="input"
+              name="captcha"
+              value={form.captcha}
+              onChange={handleChange}
+              placeholder={`What is the sum of ${captchaNumberOne} + ${captchaNumberTwo}?`}
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+            />
+          </label>
 
           <div className="flex flex-row mb-4">
             <button
@@ -123,6 +146,7 @@ const Contact = () => {
             </button>
             {isSent && <span className="ml-4 mt-3 text-white font-medium">Sent!</span>}
             {isError && <span className="ml-4 mt-3 text-white font-medium">Error! Try again later.</span>}
+            {isCaptchaWrong && <span className="ml-4 mt-3 text-white font-medium">Captcha is wrong!</span>}
           </div>
         </form>
       </motion.div>
