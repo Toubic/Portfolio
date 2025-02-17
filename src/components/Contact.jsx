@@ -23,12 +23,16 @@ const Contact = () => {
   const [captchaNumberOne, setCaptchaNumberOne] = useState(Math.floor(Math.random()*10));
   const [captchaNumberTwo, setCaptchaNumberTwo] = useState(Math.floor(Math.random()*10));
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
+  const resetFlags = () => {
     setIsSent(false);
     setIsError(false);
     setIsCaptchaWrong(false);
+  }
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    resetFlags();
 
     setForm({
       ...form,
@@ -39,9 +43,7 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-    setIsCaptchaWrong(false);
-    setIsSent(false);
-    setIsError(false);
+    resetFlags();
 
     if ((captchaNumberOne + captchaNumberTwo) === Number(form.captcha)) {
     emailjs.send(
