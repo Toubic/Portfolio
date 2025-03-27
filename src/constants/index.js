@@ -90,6 +90,14 @@ import {
       name: "git",
       icon: git,
     },
+    {
+      name: "Tailwind CSS",
+      icon: tailwind,
+    },
+    {
+      name: "TypeScript",
+      icon: typescript,
+    },
   ];
   
   const experiences = [
@@ -129,6 +137,27 @@ import {
   ];
   
   const projects = [
+    {
+      name: "Latest Stock News",
+      description:
+        "A websocket project for fetching the latest stock news in real time from the Alpaca API in TypeScript.",
+      tags: [
+        {
+          name: "Node.js",
+          color: "blue-text-gradient",
+        },
+        {
+          name: "API",
+          color: "pink-text-gradient",
+        },
+        {
+          name: "TypeScript",
+          color: "green-text-gradient",
+        },
+      ],
+      image: reactjs,
+      source_code_link: "https://github.com/Toubic/AlpacaAPITrading",
+    },
     {
       name: "Portfolio",
       description:
